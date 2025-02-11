@@ -17,6 +17,5 @@ jobs:
           ssh user@192.168.0.148 << 'EOF'
           cd "C:/Users/user/Desktop/fastapi-book-project"
           git pull origin main
-          pip install -r requirements.txt 
-          pm2 restart fastapi-app
+          docker-compose up --build -d
           EOF
