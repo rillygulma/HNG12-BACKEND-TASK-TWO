@@ -1,0 +1,22 @@
+name: CD
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Deploy to server
+        run: |
+          ssh user@192.168.0.148 << 'EOF'
+          cd "C:/Users/user/Desktop/fastapi-book-project"
+          git pull origin main
+          pip install -r requirements.txt 
+          pm2 restart fastapi-app
+          EOF
