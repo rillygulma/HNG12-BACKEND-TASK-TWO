@@ -14,7 +14,7 @@ jobs:
 
       - name: Deploy to server
         run: |
-          ssh user@192.168.0.148 << 'EOF'
+          ssh user127.0.0.1:8000 << 'EOF'
           cd C:/Users/user/Desktop/
           
           # Clone the repo if it doesn't exist
