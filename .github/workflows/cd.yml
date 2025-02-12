@@ -14,7 +14,7 @@ jobs:
 
       - name: Deploy to server
         run: |
-          ssh user@localhost << 'EOF'
+          ssh user@172.20.128.1 << 'EOF'
           cd "C:/Users/user/Desktop/fastapi-book-project"
           git pull origin main
           pip install -r requirements.txt
