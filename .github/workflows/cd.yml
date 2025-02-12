@@ -14,16 +14,10 @@ jobs:
 
       - name: Deploy to server
         run: |
-          ssh user@192.168.0.148 << 'EOF'
-          cd C:/Users/user/Desktop/
-          
-          # Clone the repo if it doesn't exist
-          if [ ! -d "fastapi-book-project" ]; then
-            git clone https://github.com/rillygulma/HNG12-BACKEND-TASK-TWO.git fastapi-book-project
-          fi
-          
-          cd fastapi-book-project
+          ssh user@localhost << 'EOF'
+          cd "C:/Users/user/Desktop/fastapi-book-project"
           git pull origin main
           pip install -r requirements.txt
           pm2 restart fastapi-app
+          docker-compose up --build -d
           EOF
