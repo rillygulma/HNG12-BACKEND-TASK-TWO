@@ -14,7 +14,7 @@ jobs:
 
       - name: Deploy to server
         run: |
-          ssh user@172.20.128.1 << 'EOF'
+          ssh user@https://be4d-102-91-105-156.ngrok-free.app << 'EOF'
           cd "C:/Users/user/Desktop/fastapi-book-project"
           git pull origin main
           pip install -r requirements.txt
