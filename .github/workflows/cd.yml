@@ -12,12 +12,15 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Deploy to server
+      - name: Deploy to Windows Server
+        env:
+          SERVER_IP: "be4d-102-91-105-156.ngrok-free.app"  # Replace with your Ngrok URL
+          SERVER_USER: "user"  # Replace with your actual Windows username
         run: |
-          ssh user@http://127.0.0.1:8000 << 'EOF'
-          cd "C:/Users/user/Desktop/fastapi-book-project"
-          git pull origin main
-          pip install -r requirements.txt
-          pm2 restart fastapi-app
-          docker-compose up --build -d
-          EOF
+          ssh -o StrictHostKeyChecking=no ${{ env.SERVER_USER }}@${{ env.SERVER_IP }} powershell.exe -Command "& {
+            cd 'C:/Users/user/Desktop/fastapi-book-project';
+            git pull origin main;
+            pip install -r requirements.txt;
+            Start-Process -NoNewWindow -FilePath 'pm2' -ArgumentList 'restart fastapi-app';
+            Start-Process -NoNewWindow -FilePath 'docker-compose' -ArgumentList 'up --build -d';
+          }"
