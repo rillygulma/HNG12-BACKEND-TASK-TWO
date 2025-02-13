@@ -14,7 +14,7 @@ jobs:
 
       - name: Deploy to Windows Server
         env:
-          SERVER_IP: "be4d-102-91-105-156.ngrok-free.app"  # Replace with your Ngrok URL
+          SERVER_IP: "hng12-backend-task-two-production.up.railway.app"  # Replace with your Ngrok URL
           SERVER_USER: "user"  # Replace with your actual Windows username
         run: |
           ssh -o StrictHostKeyChecking=no ${{ env.SERVER_USER }}@${{ env.SERVER_IP }} powershell.exe -Command "& {
